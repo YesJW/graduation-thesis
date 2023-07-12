@@ -1,10 +1,10 @@
 package com.example.graduationthesis.service;
 
 import com.example.graduationthesis.data.dto.UserDto;
-import com.example.graduationthesis.data.entity.User;
+import com.example.graduationthesis.data.dto.UserResponseDto;
 
 public interface SignService {
-    String signUp(User user);
+    UserResponseDto signUp(UserDto userDto);
 
     UserDto signIn(String name, String pw);
 }

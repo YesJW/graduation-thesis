@@ -18,6 +18,10 @@ public class SignServiceImpl implements SignService{
 
     @Override
     public UserResponseDto signUp(UserDto userDto) {
+        if (signRepository.existsById(userDto.getId())) {
+            throw new IllegalArgumentException("키 값 중복");
+
+        }
         User user = new User();
         user.setId(userDto.getId());
         user.setPw(userDto.getPw());

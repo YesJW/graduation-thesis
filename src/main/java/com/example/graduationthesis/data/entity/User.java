@@ -19,12 +19,12 @@ public class User {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
-    @Column
+    @Column(nullable = false)
     String pw;
 
-    @Column
+    @Column(nullable = false)
     String name;
 
-    @Column
+    @Column(nullable = false)
     String role;
 }

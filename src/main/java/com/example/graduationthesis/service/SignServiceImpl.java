@@ -35,7 +35,17 @@ public class SignServiceImpl implements SignService{
     }
 
     @Override
-    public UserDto signIn(String name, String pw) {
+    public UserResponseDto signIn(String id, String pw) {
+        User user = signRepository.findByIdAndPw(id,pw);
+
+        if (user != null) {
+
+            UserResponseDto userResponseDto = new UserResponseDto();
+            userResponseDto.setName(user.getName());
+            userResponseDto.setId(user.getId());
+            userResponseDto.setRole(user.getRole());
+            return userResponseDto;
+        }
         return null;
     }
 }

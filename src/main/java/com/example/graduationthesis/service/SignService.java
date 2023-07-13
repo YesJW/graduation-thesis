@@ -6,5 +6,5 @@ import com.example.graduationthesis.data.dto.UserResponseDto;
 public interface SignService {
     UserResponseDto signUp(UserDto userDto);
 
-    UserDto signIn(String name, String pw);
+    UserResponseDto signIn(String id, String pw);
 }

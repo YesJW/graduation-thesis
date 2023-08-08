@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Login Page</title>
+</head>
+<body>
+<div class="login-container">
+    <h1>Login</h1>
+    <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+    </form>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#login-form").submit(function(event) {
+            event.preventDefault();
+
+            const username = $("#username").val();
+            const password = $("#password").val();
+
+            $.ajax({
+                url: `/login_web?id=${username}&pw=${password}`,
+                method: "GET",
+                dataType: "json",
+                success: function(userResponseDto) {
+                    console.log("success",userResponseDto)
+                    if (userResponseDto && userResponseDto.role === "professor") {
+                        // 로그인이 성공하고 교수 역할일 때 mainPage로 리다이렉트
+                        window.location.href = "mainPage";
+                        }
+
+                },
+                error: function(error) {
+                    alert("로그인에 실패했습니다.");
+                    console.error(error)
+                }
+            });
+        });
+    });
+
+
+</script>
+</body>
+</html>

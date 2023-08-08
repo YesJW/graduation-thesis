@@ -1,11 +1,10 @@
 package com.example.graduationthesis.data.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -27,4 +26,7 @@ public class User {
 
     @Column(nullable = false)
     String role;
+
+    @OneToMany(mappedBy = "user")
+    List<Lecture> lectures;
 }

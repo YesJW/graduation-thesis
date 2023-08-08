@@ -5,6 +5,8 @@ import com.example.graduationthesis.data.dto.UserResponseDto;
 import com.example.graduationthesis.data.entity.User;
 import com.example.graduationthesis.service.SignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,12 +40,26 @@ public class SignController {
     @PostMapping("/signIn")
     public String loadData(@RequestParam String id, @RequestParam String pw) {
         UserResponseDto userResponseDto = signService.signIn(id, pw);
-        if (userResponseDto == null) {
+        if (userResponseDto == null && userResponseDto.getRole().equals("student")) {
             return "0";
         }
         else
             return "1";
 
+    }
+
+    @GetMapping("/login_web")
+    public ResponseEntity<UserResponseDto> login_web(@RequestParam String id, @RequestParam String pw){
+
+        UserResponseDto userResponseDto = signService.signIn(id, pw);
+
+        if (userResponseDto != null && userResponseDto.getRole().equals("professor")) {
+            return ResponseEntity.status(HttpStatus.OK).body(userResponseDto);
+        }
+        else {
+            return null;
+        }
 
     }
+
 }

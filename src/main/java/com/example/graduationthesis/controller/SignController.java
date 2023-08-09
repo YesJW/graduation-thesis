@@ -4,6 +4,7 @@ import com.example.graduationthesis.data.dto.UserDto;
 import com.example.graduationthesis.data.dto.UserResponseDto;
 import com.example.graduationthesis.data.entity.User;
 import com.example.graduationthesis.service.SignService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,11 +50,12 @@ public class SignController {
     }
 
     @GetMapping("/login_web")
-    public ResponseEntity<UserResponseDto> login_web(@RequestParam String id, @RequestParam String pw){
+    public ResponseEntity<UserResponseDto> login_web(@RequestParam String id, @RequestParam String pw, HttpSession session){
 
         UserResponseDto userResponseDto = signService.signIn(id, pw);
 
         if (userResponseDto != null && userResponseDto.getRole().equals("professor")) {
+            session.setAttribute("user", userResponseDto);
             return ResponseEntity.status(HttpStatus.OK).body(userResponseDto);
         }
         else {

@@ -8,4 +8,5 @@ import java.util.Map;
 
 public interface SignRepository extends JpaRepository<User, String> {
     User findByIdAndPw(String id, String pw);
+    User getById(String id);
 }

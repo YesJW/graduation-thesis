@@ -1,0 +1,18 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+.lecture-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f5f5f5;
+    cursor: pointer; /* 강의 항목에 커서를 올리면 손가락 모양 커서 표시 */
+}
+
+#qr-container {
+    margin-top: 20px;
+    text-align: center;
+}

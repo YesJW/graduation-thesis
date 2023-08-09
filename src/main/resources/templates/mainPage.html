@@ -2,12 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <link rel="stylesheet" href="css/mainStyle.css"> <!-- 여기에 필요한 CSS 파일을 링크해주세요 -->
 </head>
 <body>
-QR CODE
-<form action="/qr", method="get">
-  <input type="text" name="url"/><button type="submit">create</button>
-</form>
+<div class="container">
+  <h1>강의 목록</h1>
+  <div class="lecture-list" id="lecture-list">
+    <!-- 강의 목록을 여기에 동적으로 추가할 예정 -->
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // 서버에서 강의 목록을 가져오는 함수
+    function fetchLectures() {
+      $.ajax({
+        url: "/getLecture",
+        method: "GET",
+        dataType: "json",
+        success: function(data) {
+          if (data) {
+            displayLectures(data);
+          }
+        },
+        error: function(error) {
+          console.error(error);
+        }
+      });
+    }
+
+    // 강의 목록을 화면에 표시하는 함수
+    function displayLectures(lectureDtos) {
+      var lectureList = $("#lecture-list");
+      lectureList.empty(); // 기존 내용 지우기
+
+      $.each(lectureDtos, function(index, lectureDto) {
+        var lectureItem = $("<div>").addClass("lecture-item");
+        var lectureTitle = $("<h3>").text(lectureDto.title);
+        var lectureId = $("<p>").text("Lecture ID: " + lectureDto.lectureCode).addClass("lecture-id");
+        var lectureStartTime = $("<p>").text("Lecture ID: " + lectureDto.startDate);
+        var lectureEndTime = $("<p>").text("Lecture ID: " + lectureDto.endDate);
+
+        lectureItem.append(lectureTitle);
+        lectureItem.append(lectureId);
+        lectureItem.append(lectureStartTime);
+        lectureItem.append(lectureEndTime);
+        lectureList.append(lectureItem);
+
+      });
+    }
+
+    // 페이지 로드 시 강의 목록 가져와서 화면에 표시
+    fetchLectures();
+  });
+  $(document).on("click", ".lecture-item", function() {
+    var lectureIdAll = $(this).find(".lecture-id").text()
+    var lectureIdStartIdx = lectureIdAll.indexOf(":")+2;
+    var lectureId = lectureIdAll.substring(lectureIdStartIdx);
+    var qrUrl = "/qr?url=" + encodeURIComponent(lectureId);
+
+    // QR 코드 생성 및 표시
+    generateQRCode(qrUrl);
+  });
+
+  // QR 코드 생성 및 표시하는 함수
+  function generateQRCode(qrUrl) {
+    $.ajax({
+      url: qrUrl,
+      method: "GET",
+      responseType: "arraybuffer",
+      success: function(data) {
+        window.location.href = qrUrl;
+      },
+      error: function(error) {
+        console.error(error);
+      }
+    });
+  }
+</script>
 </body>
 </html>

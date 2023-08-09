@@ -39,4 +39,20 @@ public class LectureServiceImpl implements LectureService{
         }
         return lectureDtos;
     }
+
+    @Override
+    public List<String> getStudentLectureList(String id) {
+        User user = signRepository.getById(id);
+        System.out.println(user);
+        List<Lecture> lectures = lectureRepository.findByUser(user);
+        List<String> lectureList = new ArrayList<>();
+        for (Lecture l : lectures){
+            String lecture = l.getLectureCode();
+            lectureList.add(lecture);
+        }
+
+        System.out.println(lectureList);
+
+        return lectureList;
+    }
 }

@@ -8,4 +8,6 @@ public interface LectureService {
 
     List<LectureDto> getLectureList(String id);
 
+    List<String> getStudentLectureList(String id);
+
 }

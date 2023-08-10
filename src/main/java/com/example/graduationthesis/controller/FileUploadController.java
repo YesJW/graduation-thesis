@@ -2,6 +2,7 @@ package com.example.graduationthesis.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,13 +16,15 @@ import java.nio.file.StandardCopyOption;
 @RestController
 public class FileUploadController {
 
+    // 파일 업로드 경로 설정 (저장할 경로 application.properties에 수정)
+    @Value("${spring.servlet.multipart.location}")
+    private String uploadDir;
+
     private final Logger LOGGER = LoggerFactory.getLogger(FileUploadController.class);
 
     @PostMapping("/upload")
     public String handleFileUpload(@RequestPart("file") MultipartFile file, @RequestPart("fileName") String fileName ) {
         LOGGER.info("호출됨");
-        // 파일 업로드 경로 설정 (저장할 경로에 적절히 수정해주세요)
-        String uploadDir = "/Users/nojangwoo/Desktop/image";
 
         try {
             // 파일명 생성 (UUID를 사용하여 고유한 파일명 생성)

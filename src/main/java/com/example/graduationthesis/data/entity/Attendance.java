@@ -1,13 +1,17 @@
 package com.example.graduationthesis.data.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Data
 @Table
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Attendance {
     @Id
     @GeneratedValue
@@ -19,6 +23,6 @@ public class Attendance {
     @ManyToOne
     private Lecture lecture;
 
-    private Date date;
+    private LocalDate date;
 
 }

@@ -10,4 +10,6 @@ import java.util.List;
 public interface LectureRepository extends JpaRepository<Lecture, Long> {
     List<Lecture> findByUser(User user);
 
+    Lecture findByLectureCode(String code);
+
 }

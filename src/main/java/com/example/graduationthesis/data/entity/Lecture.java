@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -28,4 +30,6 @@ public class Lecture {
     @ManyToOne
     private User user;
 
+    @OneToMany(mappedBy = "lecture")
+    List<Attendance> attendances = new ArrayList<>();
 }

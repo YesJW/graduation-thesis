@@ -4,6 +4,7 @@ package com.example.graduationthesis.data.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,4 +30,7 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     List<Lecture> lectures;
+
+    @OneToMany(mappedBy = "user")
+    List<Attendance> attendances = new ArrayList<>();
 }

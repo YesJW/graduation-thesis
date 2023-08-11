@@ -1,13 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+  <title>QR Code Page</title>
 </head>
 <body>
-QR CODE
-<form action="/qr", method="get">
-  <input type="text" name="url"/><button type="submit">create</button>
-</form>
+<div id="qrCodeContainer">
+  <!-- QR표시자리 -->
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+  $(document).ready(function() {
+
+    var queryString = window.location.search;
+    var urlParams = new URLSearchParams(queryString);
+    var lectureId = urlParams.get('lectureId');
+    // 초기 QR 코드 생성 및 표시
+    updateQRCode(lectureId);
+
+    // 15초마다 QR 코드 업데이트
+    setInterval(function() {
+      updateQRCode(lectureId);
+    }, 15000);
+
+  });
+  function updateQRCode(lectureId) {
+    $.ajax({
+      url: '/qr',  // QR 코드 생성 엔드포인트 URL
+      method: 'GET',
+      data: {
+        url: lectureId
+      },
+      responseType: 'arraybuffer',
+      success: function(data) {
+        var qrImageElement = document.createElement('img');
+        qrImageElement.src = 'data:image/png;base64,' + data; // Base64 이미지 데이터 사용
+        qrImageElement.alt = 'QR Code';
+
+        var qrCodeContainer = document.getElementById('qrCodeContainer');
+        qrCodeContainer.innerHTML = ''; // 기존 내용 지우기
+        qrCodeContainer.appendChild(qrImageElement);
+      },
+      error: function(error) {
+        console.error(error);
+      }
+    });
+  }
+</script>
 </body>
 </html>

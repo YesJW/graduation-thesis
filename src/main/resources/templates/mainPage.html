@@ -43,13 +43,13 @@
         var lectureItem = $("<div>").addClass("lecture-item");
         var lectureTitle = $("<h3>").text(lectureDto.title);
         var lectureId = $("<p>").text("Lecture ID: " + lectureDto.lectureCode).addClass("lecture-id");
-        var lectureStartTime = $("<p>").text("Lecture ID: " + lectureDto.startDate);
-        var lectureEndTime = $("<p>").text("Lecture ID: " + lectureDto.endDate);
+        // var lectureStartTime = $("<p>").text("Lecture ID: " + lectureDto.startDate);
+        // var lectureEndTime = $("<p>").text("Lecture ID: " + lectureDto.endDate);
 
         lectureItem.append(lectureTitle);
         lectureItem.append(lectureId);
-        lectureItem.append(lectureStartTime);
-        lectureItem.append(lectureEndTime);
+        // lectureItem.append(lectureStartTime);
+        // lectureItem.append(lectureEndTime);
         lectureList.append(lectureItem);
 
       });

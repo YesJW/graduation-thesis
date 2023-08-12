@@ -38,6 +38,14 @@ public class SignController {
 
     }
 
+    @PostMapping("/add_face")
+    public String addFace() {
+        // TODO: 2023/08/12 유저에게 얼굴 사진 리스트를 받고 학습 서버로 전송
+        // TODO: 2023/08/12 학습이 결과에 따른 반환값 리턴
+
+        return "";
+    }
+
     @PostMapping("/signIn")
     public String loadData(@RequestParam String id, @RequestParam String pw) {
         UserResponseDto userResponseDto = signService.signIn(id, pw);

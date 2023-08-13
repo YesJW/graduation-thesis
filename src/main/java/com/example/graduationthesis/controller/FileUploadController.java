@@ -29,7 +29,7 @@ public class FileUploadController {
         try {
             // 파일명 생성 (UUID를 사용하여 고유한 파일명 생성)
             // 파일 저장 경로 생성
-            String filePath = uploadDir + File.separator + fileName;
+            String filePath = uploadDir+ File.separator + "temp_image" + File.separator + fileName;
 
             // 파일 저장
             Files.copy(file.getInputStream(), new File(filePath).toPath(), StandardCopyOption.REPLACE_EXISTING);

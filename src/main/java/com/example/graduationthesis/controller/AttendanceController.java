@@ -31,10 +31,10 @@ public class AttendanceController {
                 UUID.randomUUID().toString(),
                 faceImage.getOriginalFilename()
         );
-        File saveFile = new File(imgDto.getUuid() + "_" + imgDto.getFileName());
+        File saveFile = new File("temp_image" + File.separator +imgDto.getUuid() + "_" + imgDto.getFileName());
         faceImage.transferTo(saveFile);
 
-        JSONObject responseJson = attendanceService.sendDataForValidation("20184114", location+"/"+saveFile.getName());
+        JSONObject responseJson = attendanceService.sendDataForValidation("val","20184114", location+"/temp_image/"+saveFile.getName());
 
         if (responseJson.get("validation_result").equals("True")) {
             attendanceService.saveAttendance(studentNum, lectureCode);

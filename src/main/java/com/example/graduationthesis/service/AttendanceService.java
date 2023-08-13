@@ -58,7 +58,7 @@ public class AttendanceService {
         return attendanceRepository.saveAndFlush(newAttendance);
     }
 
-    public JSONObject sendDataForValidation(String studentNum, String location) throws ParseException {
+    public JSONObject sendDataForValidation(String apiAddress, String studentNum, String location) throws ParseException {
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("student_num", studentNum);
         params.add("img_loc", location);
@@ -71,7 +71,7 @@ public class AttendanceService {
 
         RestTemplate rt = new RestTemplate();
         ResponseEntity<String> response = rt.exchange(
-                "http://127.0.0.1:8000/val",
+                "http://127.0.0.1:8000/"+apiAddress,
                 HttpMethod.POST,
                 entity,
                 String.class
@@ -80,9 +80,6 @@ public class AttendanceService {
         JSONParser jsonParser = new JSONParser();
         JSONObject valResult = (JSONObject) jsonParser.parse(body);
 
-        if (valResult.get("validation_result").equals("False")) {
-            // 실패했을경우 반환 필요하면 추가
-        }
         return valResult;
     }
 }

@@ -12,8 +12,4 @@ public interface LectureRepository extends JpaRepository<Lecture, Long> {
 
     Lecture findByLectureCode(String code);
 
-    Lecture findByLectureCodeAndUser_Id(String code, String id);
-
-
-
 }

@@ -10,6 +10,4 @@ public interface LectureService {
 
     List<String> getStudentLectureList(String id);
 
-    String getLectureTitle(String lectureCode, String id);
-
 }

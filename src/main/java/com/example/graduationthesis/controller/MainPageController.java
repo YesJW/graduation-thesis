@@ -43,5 +43,4 @@ public class MainPageController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
-
 }

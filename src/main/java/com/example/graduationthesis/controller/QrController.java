@@ -66,4 +66,16 @@ public class QrController {
 
     }
 
+    @PostMapping("/qrCheck")
+    public List<String> check_Lecture(@RequestParam String id){
+        LocalDateTime localDateTime = LocalDateTime.now();
+        LOGGER.info("qr체크 강의 목록 확인 ");
+        List<String> lectureList = lectureService.getStudentLectureList(id);
+
+        if(!lectureList.isEmpty()) {
+            return lectureList;
+        }
+        return null;
+
+    }
 }

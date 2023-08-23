@@ -43,7 +43,6 @@ public class LectureServiceImpl implements LectureService{
     @Override
     public List<String> getStudentLectureList(String id) {
         User user = signRepository.getById(id);
-        System.out.println(user);
         List<Lecture> lectures = lectureRepository.findByUser(user);
         List<String> lectureList = new ArrayList<>();
         for (Lecture l : lectures){
@@ -54,5 +53,15 @@ public class LectureServiceImpl implements LectureService{
         System.out.println(lectureList);
 
         return lectureList;
+    }
+
+    @Override
+    public String getLectureTitle(String lectureCode, String id) {
+        Lecture lecture = lectureRepository.findByLectureCodeAndUser_Id(lectureCode,id);
+        System.out.println(lecture.getTitle());
+
+        String lectureTitle = lecture.getTitle();
+
+        return lectureTitle;
     }
 }

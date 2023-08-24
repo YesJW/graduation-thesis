@@ -22,6 +22,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework:spring-test:6.0.10'
     implementation 'com.drewnoakes:metadata-extractor:2.18.0'
     implementation group: 'org.imgscalr', name: 'imgscalr-lib', version: '4.2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'

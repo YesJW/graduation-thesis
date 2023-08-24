@@ -51,7 +51,7 @@ public class AttendanceService {
 
     public Attendance saveAttendance(String userId, String lectureCode) {
         User user = signRepository.getById(userId);
-        Lecture lecture = lectureRepository.findByLectureCode(lectureCode);
+        Lecture lecture = lectureRepository.findByLectureCodeAndUser_Id(lectureCode, userId);
         LocalDate now = LocalDate.now();
         Attendance newAttendance = Attendance.builder().user(user).lecture(lecture).date(now).build();
 

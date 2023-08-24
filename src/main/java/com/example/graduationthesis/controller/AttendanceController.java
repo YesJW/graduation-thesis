@@ -1,5 +1,8 @@
 package com.example.graduationthesis.controller;
 
+import com.drew.imaging.ImageMetadataReader;
+import com.drew.imaging.ImageProcessingException;
+import com.drew.metadata.Metadata;
 import com.example.graduationthesis.data.dto.ImgDto;
 import com.example.graduationthesis.service.AttendanceService;
 import lombok.RequiredArgsConstructor;
@@ -8,8 +11,11 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 @RestController
@@ -31,6 +37,10 @@ public class AttendanceController {
                 UUID.randomUUID().toString(),
                 faceImage.getOriginalFilename()
         );
+
+        Metadata metadata = getMetadata(faceImage.getInputStream());
+
+
         File saveFile = new File("temp_image" + File.separator +imgDto.getUuid() + "_" + imgDto.getFileName());
         faceImage.transferTo(saveFile);
 
@@ -41,5 +51,13 @@ public class AttendanceController {
         }
 
         return responseJson.toJSONString();
+    }
+
+    public Metadata getMetadata(InputStream inputStream) {
+        try {
+            return ImageMetadataReader.readMetadata(inputStream);
+        } catch (ImageProcessingException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

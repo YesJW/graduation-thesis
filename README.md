@@ -32,4 +32,54 @@
 - QR코드 인식 및 검증
 
 ---
-### 실행 화면
+## 주요 기능 실행 화면 
+
+### 안드로이드
+- 로그인
+  
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/cab8cd88-1c5f-482d-8366-dc2aaccbbe3d) 
+
+
+- QR코드 인식 화면
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/205c76f5-92a7-4534-81d5-4bae0aa83a99)
+
+
+- 얼굴 및 눈 검출
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/ca3c5143-abfa-44aa-9d60-5eb895fea91b)
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/e8605f2f-2071-42cf-91f2-a951ca866951)
+
+- 서버로 사진 전송
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/fb9e5522-16a2-4840-a1f7-977cad62e0ed)
+
+
+- 출석 완료
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/90cd14d1-40eb-4de5-930b-3db612f1d37c)
+
+
+### Web
+
+- 로그인
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/e888623a-4507-45d9-896f-ce13164121b3) ![image](https://github.com/YesJW/graduation-thesis/assets/86145775/00abc8fc-e218-46b2-a7c9-a557ec4ef02f) 
+
+- 강의 목록
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/9ecb3a84-e837-431b-93dd-88973106f24e)
+
+
+- QR코드 생성
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/3da1fa9c-522a-4d14-8eec-7dd0fd845a74) 
+
+
+## 결과
+
+- 얼굴 검출 및 검증까지 걸린 시간 : 약 2초
+
+![image](https://github.com/YesJW/graduation-thesis/assets/86145775/28189f9a-4daf-489f-ba81-53187e732cb4)
+
+테스트 결과 딥러닝 서버에서 얼굴 검출부터 검증까지 걸린 시간이 2초 정도로 평균 5분 이상 걸리던 출석체크 시간이 매우 크게 단축됨
